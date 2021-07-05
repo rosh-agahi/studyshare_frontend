@@ -8,13 +8,17 @@ function getFlashcards() {
   fetch(endPoint)
   .then(response => response.json())
   .then(flashcards => {
-    flashcards.data.forEach(flashcard => {
-      const flashcardMarkup =
-      <div data-id=${flashcard.id}>
-        <h2>${flashcard.term}</h2>
-        <h2>${flashcard.subject}</h2>
-        <p>${flascard.definition}</p>
-        <br>
-    });
+    flashcards.data.forEach(fc => {
+      const flashcardMarkup = `
+
+        <div data-id=${fc.id}>
+          <h2>${fc.attributes.term}</h2>
+          <h4>${fc.attributes.subject.name}</h4>
+          <p>${fc.attributes.definition}</p>
+          <br>
+        </div>`;
+
+        document.querySelector('#flashcard-container').innerHTML += flashcardMarkup
+    })
   })
 }
