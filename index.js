@@ -33,10 +33,17 @@ function createFormHandler(e) {
   const termInput = document.querySelector(#term).value
   const definitionInput = document.querySelector(#definition).value
   const subjectId = parseInt(document.querySelector(#subject).value)
-  const userId = parseInt(1)
+  const userId = 1
   postFetch(termInput, definitionInput, subjectId)
 }
 
 function postFetch(term, definition, subject, user){
+  let flashcardData = {term, definition, subject, user}
 
+  fetch(endPoint, {
+    // POST request
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(flashcardData)
+  })
 }
