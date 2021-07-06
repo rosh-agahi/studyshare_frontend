@@ -14,18 +14,22 @@ function getFlashcards() {
   .then(response => response.json())
   .then(flashcards => {
     flashcards.data.forEach(fc => {
-      const flashcardMarkup = `
-
-        <div data-id=${fc.id}>
-          <h2>${fc.attributes.term}</h2>
-          <h4>${fc.attributes.subject.name}</h4>
-          <p>${fc.attributes.definition}</p>
-          <br>
-        </div>`;
-
-        document.querySelector('#flashcard-container').innerHTML += flashcardMarkup
+      displayFlashcard(fc)
     })
   })
+}
+
+function displayFlashcard(card) {
+  const flashcardMarkup = `
+
+    <div data-id=${card.id}>
+      <h2>${card.attributes.term}</h2>
+      <h4>${card.attributes.subject.name}</h4>
+      <p>${card.attributes.definition}</p>
+      <br>
+    </div>`;
+
+    document.querySelector('#flashcard-container').innerHTML += flashcardMarkup
 }
 
 function createFormHandler(e) {
@@ -46,4 +50,3 @@ function postFetch(term, definition, subject, user){
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(flashcardData)
   })
-}
