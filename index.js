@@ -39,15 +39,34 @@ function createFormHandler(e) {
   const subjectId = parseInt(document.querySelector('#subject').value)
   const userId = 1
   console.log(termInput, definitionInput, subjectId, userId)
-  // postFetch(termInput, definitionInput, subjectId)
+  postFetch (termInput, definitionInput, subjectId, userId)
 }
-//
-// function postFetch(term, definition, subject, user){
-//   let flashcardData = {term, definition, subject, user}
-//
-//   fetch(endPoint, {
-//     // POST request
-//     method: "POST",
-//     headers: {"Content-Type": "application/json"},
-//     body: JSON.stringify(flashcardData)
-//   })
+
+function postFetch (term, definition, subject_id, user_id) {
+  fetch(endPoint, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      term: term,
+      definition: definition,
+      subject_id: subject_id,
+      user_id: user_id
+    })
+  })
+
+  .then(response => response.json())
+  .then(flashcard => {
+    console.log(flashcard);
+  //   const flashcardData = flashcard.data.attributes
+  //
+  //   const flashcardMarkup = `
+  //   <div data-id=${card.id}>
+  //     <h2>${card.term}</h2>
+  //     <h4>${card.subject.name}</h4>
+  //     <p>${card.definition}</p>
+  //     <br>
+  //   </div>`;
+  //
+  // document.querySelector('#flashcard-container').innerHTML += flashcardMarkup;
+    })
+  }
