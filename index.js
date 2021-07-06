@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function getFlashcards() {
   fetch(endPoint)
   .then(response => response.json())
+  .then(document.querySelector('#flashcard-container').innerHTML = "")
   .then(flashcards => {
     flashcards.data.forEach(fc => {
       displayFlashcard(fc)
@@ -43,30 +44,18 @@ function createFormHandler(e) {
 }
 
 function postFetch (term, definition, subject_id, user_id) {
+  const flashcardFormData = {term, definition, subject_id, user_id}
+
   fetch(endPoint, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({
-      term: term,
-      definition: definition,
-      subject_id: subject_id,
-      user_id: user_id
-    })
+    body: JSON.stringify(flashcardFormData)
   })
 
   .then(response => response.json())
   .then(flashcard => {
     console.log(flashcard);
-  //   const flashcardData = flashcard.data.attributes
-  //
-  //   const flashcardMarkup = `
-  //   <div data-id=${card.id}>
-  //     <h2>${card.term}</h2>
-  //     <h4>${card.subject.name}</h4>
-  //     <p>${card.definition}</p>
-  //     <br>
-  //   </div>`;
-  //
-  // document.querySelector('#flashcard-container').innerHTML += flashcardMarkup;
+    getFlashcards()
     })
   }
+=
