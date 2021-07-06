@@ -3,10 +3,10 @@ const endPoint = "http://127.0.0.1:3000/api/v1/flashcards"
 document.addEventListener('DOMContentLoaded', () => {
   getFlashcards()
 
-  const createFlashcardForm = document.querySelector("#create_flashcard_form")
+  let createFlashcardForm = document.querySelector("#create_flashcard_form")
 
   createFlashcardForm.addEventListener("submit", (e) => createFormHandler(e))
-})
+});
 
 
 function getFlashcards() {
@@ -34,19 +34,20 @@ function displayFlashcard(card) {
 
 function createFormHandler(e) {
   e.preventDefault()
-  const termInput = document.querySelector(#term).value
-  const definitionInput = document.querySelector(#definition).value
-  const subjectId = parseInt(document.querySelector(#subject).value)
+  const termInput = document.querySelector('#term').value
+  const definitionInput = document.querySelector('#definition').value
+  const subjectId = parseInt(document.querySelector('#subject').value)
   const userId = 1
-  postFetch(termInput, definitionInput, subjectId)
+  console.log(termInput, definitionInput, subjectId, userId)
+  // postFetch(termInput, definitionInput, subjectId)
 }
-
-function postFetch(term, definition, subject, user){
-  let flashcardData = {term, definition, subject, user}
-
-  fetch(endPoint, {
-    // POST request
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(flashcardData)
-  })
+//
+// function postFetch(term, definition, subject, user){
+//   let flashcardData = {term, definition, subject, user}
+//
+//   fetch(endPoint, {
+//     // POST request
+//     method: "POST",
+//     headers: {"Content-Type": "application/json"},
+//     body: JSON.stringify(flashcardData)
+//   })
