@@ -58,42 +58,42 @@ function postFetch (term, definition, subject_id, user_id) {
     })
 }
 
-function newUser {
+function newUser() {
   //new user form, just username
   //posts new user to database
   //also logs in user
 }
 
-function loginUser {
+function loginUser() {
   //needs to set current_user
 }
 
-function logout {
+function logout() {
   //unset current_user
 }
 
-function nextCard {
+function nextCard() {
   // render the "front" of the next next flashcard
 }
 
-function flipCard {
+function flipCard() {
   // flip card to reveal answer
 }
 
-function selectRandomFlashcard {
+function selectRandomFlashcard() {
   // use a random number generator to select a flashcard
   // use this in the nextFlashcard
 }
 
-function selectStudyMode {
+function selectStudyMode() {
   // select what is considered the "front" of the card - term or definition
 }
 
-function selectMineOrAll {
+function selectMineOrAll() {
   // allow user to only see their own flashcards or to use globally
   // created flashcards for a given subject
 }
 
-function fetchSubject {
+function fetchSubject() {
   // select a Subject to view its flashcards
 }

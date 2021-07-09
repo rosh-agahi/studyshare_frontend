@@ -20,6 +20,7 @@ header {
   padding-bottom: 0;
   display: flex;
   flex-direction: row;
+  align-content: center;
 }
 
 .page_container {
@@ -36,7 +37,41 @@ body {
   background: #000747;
 }
 
-.button{}
+input.text_field {
+  background-color: #8A8CC0;
+  width: 200px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+::placeholder {
+  color: white;
+}
+
+.button {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.3);
+  margin: 0px 20px;
+  margin-top: -20px;
+  white-space: normal;
+  word-wrap: break-word;
+  background-image: linear-gradient(315deg, gold, mediumvioletred 45%);
+  vertical-align: top;
+  padding-bottom: 1px;
+
+}
+
+.button:active{
+  box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.3)
+}
 
 .selected{}
 
