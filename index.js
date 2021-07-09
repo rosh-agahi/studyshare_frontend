@@ -39,7 +39,6 @@ function createFormHandler(e) {
   const definitionInput = document.querySelector('#definition').value
   const subjectId = parseInt(document.querySelector('#subject').value)
   const userId = 1
-  console.log(termInput, definitionInput, subjectId, userId)
   postFetch (termInput, definitionInput, subjectId, userId)
 }
 
@@ -57,5 +56,44 @@ function postFetch (term, definition, subject_id, user_id) {
     console.log(flashcard);
     getFlashcards()
     })
-  }
-=
+}
+
+function newUser {
+  //new user form, just username
+  //posts new user to database
+  //also logs in user
+}
+
+function loginUser {
+  //needs to set current_user
+}
+
+function logout {
+  //unset current_user
+}
+
+function nextCard {
+  // render the "front" of the next next flashcard
+}
+
+function flipCard {
+  // flip card to reveal answer
+}
+
+function selectRandomFlashcard {
+  // use a random number generator to select a flashcard
+  // use this in the nextFlashcard
+}
+
+function selectStudyMode {
+  // select what is considered the "front" of the card - term or definition
+}
+
+function selectMineOrAll {
+  // allow user to only see their own flashcards or to use globally
+  // created flashcards for a given subject
+}
+
+function fetchSubject {
+  // select a Subject to view its flashcards
+}
