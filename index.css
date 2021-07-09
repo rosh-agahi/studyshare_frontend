@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
+
 p {
   color: green;
 }
 
 .logo {
-  height: 200px;
+  height: 180px;
 }
 
 header {
@@ -13,7 +15,17 @@ header {
 .logo_container {
   background-image: linear-gradient(315deg, #01C4CC, #3b4284 45%);
   margin: 0;
-  padding: 0;
+  padding: 15px;
+  padding-top: 20px;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.user_container {
+  width: 80%;
+  text-align: center;
+  padding: 60px 0px;
 }
 
 body {
@@ -23,3 +35,8 @@ body {
 .button{}
 
 .selected{}
+
+html {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+}
