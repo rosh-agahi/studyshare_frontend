@@ -22,6 +22,10 @@ header {
   flex-direction: row;
 }
 
+.page_container {
+  padding: 5px 15px;
+}
+
 .user_container {
   width: 80%;
   text-align: center;
