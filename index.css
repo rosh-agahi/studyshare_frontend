@@ -33,6 +33,24 @@ header {
   height: 550px;
   background-color: #202114;
   padding: 5px 23px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form#subjects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#select_subject {
+  background-image: linear-gradient(315deg, #607333, #19411F, #023924);
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  letter-spacing: normal;
 }
 
 .new_buttons {
