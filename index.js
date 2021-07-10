@@ -2,7 +2,7 @@ const endPointFlashcards = "http://127.0.0.1:3000/api/v1/flashcards"
 const endPointSubjects = "http://127.0.0.1:3000/api/v1/subjects"
 
 document.addEventListener('DOMContentLoaded', () => {
-  getSubjects()
+  getSubjects('#subject_selector_input')
   renderFlashcardForm()
 
   let createFlashcardForm = document.querySelector("#create_flashcard_form")
@@ -18,10 +18,8 @@ function populateFlaschardField(markup) {
 function renderFlashcardForm() {
   const flashcardForm = `
   <form id="create_flashcard_form" autocomplete="off">
-    <select id="subject" type="text" name="subject" placeholder="Select or Create New Subject"></input>
-      <option value="1">Brewing</option>
-      <option value="2">Geometry</option>
-      <option value="3">Organic Chemistry</option>
+    <select id="subject" type="text" name="subject" placeholder="Select or Create New Subject">
+
     </select>
     <br>
     <input id="term" type="text" name="term" placeholder="Term"></input>
@@ -31,8 +29,10 @@ function renderFlashcardForm() {
     <input id="submit" name="submit" type="submit" value="Add Flashcard"></input>
   </form>
   `
-  hideStudyButtons()
   populateFlaschardField(flashcardForm)
+  getSubjects('#subject')
+  hideStudyButtons()
+
 }
 
 function hideStudyButtons() {
@@ -63,23 +63,21 @@ function renderSubjectForm() {
 
 }
 
-
-
-function getSubjects() {
+function getSubjects(form) {
   fetch(endPointSubjects)
   .then(response => response.json())
   .then(subjects => {
     subjects.data.forEach(s => {
-      addSubjectToSelector(s)
+      addSubjectToSelector(s, form)
     })
   })
 }
 
-function addSubjectToSelector(subject) {
+function addSubjectToSelector(subject, formField) {
   const subjectSelectorMarkup = `
   <option value="${subject.id}">${subject.attributes.name}</option>
   `
-  document.querySelector('#subject_selector_input').innerHTML += subjectSelectorMarkup
+  document.querySelector(formField).innerHTML += subjectSelectorMarkup
 }
 
 function getFlashcards() {
