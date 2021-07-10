@@ -4,9 +4,10 @@ const endPointSubjects = "http://127.0.0.1:3000/api/v1/subjects"
 document.addEventListener('DOMContentLoaded', () => {
   getSubjects()
   renderFlashcardForm()
-  let createFlashcardForm = document.querySelector("#create_flashcard_form")
 
+  let createFlashcardForm = document.querySelector("#create_flashcard_form")
   createFlashcardForm.addEventListener("submit", (e) => createFormHandler(e))
+
 });
 
 
@@ -43,6 +44,10 @@ function renderSubjectForm() {
   </form>
   `
   populateFlaschardField(subjectForm)
+
+  let createSubjectForm = document.querySelector("#create_subject_form")
+  createSubjectForm.addEventListener("submit", (e) => createSubjectFormHandler(e))
+
 }
 
 
@@ -92,12 +97,6 @@ function createFormHandler(e) {
   postFlashcardFetch (termInput, definitionInput, subjectId, userId)
 }
 
-function createSubjectFormHandler(e) {
-  e.preventDefault()
-  const nameInput = document.querySelector('#name').value
-  // need postSubjectFetch
-}
-
 function postFlashcardFetch (term, definition, subject_id, user_id) {
   const flashcardFormData = {term, definition, subject_id, user_id}
 
@@ -112,6 +111,30 @@ function postFlashcardFetch (term, definition, subject_id, user_id) {
     console.log(flashcard);
     getFlashcards()
     })
+}
+
+function createSubjectFormHandler(e) {
+  e.preventDefault()
+  const nameInput = document.querySelector('#name').value
+  postSubjectFetch(nameInput)
+}
+
+function postSubjectFetch (name) {
+  const subjectFormData = {name}
+
+  fetch(endPointSubjects, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(subjectFormData)
+  })
+
+  .then(response => response.json())
+  .then(subject => {
+    console.log()
+    document.querySelector('#subject_selector_input').innerHTML = ""
+    getSubjects()
+    populateFlaschardField(`<div>New Subject Added! You can begin adding flashcards for it now :)</div>` )
+  })
 }
 
 function newUser() {
