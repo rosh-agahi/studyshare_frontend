@@ -35,6 +35,12 @@ header {
   padding: 5px 23px;
 }
 
+.new_buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .right_column {
   width: 70%;
 }

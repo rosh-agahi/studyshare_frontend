@@ -3,7 +3,7 @@ const endPointSubjects = "http://127.0.0.1:3000/api/v1/subjects"
 
 document.addEventListener('DOMContentLoaded', () => {
   getSubjects()
-  renderForm()
+  renderFlashcardForm()
   let createFlashcardForm = document.querySelector("#create_flashcard_form")
 
   createFlashcardForm.addEventListener("submit", (e) => createFormHandler(e))
@@ -14,7 +14,7 @@ function populateFlaschardField(markup) {
   document.querySelector('#flashcard').innerHTML = markup
 }
 
-function renderForm() {
+function renderFlashcardForm() {
   const flashcardForm = `
   <form id="create_flashcard_form">
     <select id="subject" type="text" name="subject" placeholder="Select or Create New Subject"></input>
@@ -32,6 +32,20 @@ function renderForm() {
   `
   populateFlaschardField(flashcardForm)
 }
+
+
+function renderSubjectForm() {
+  const subjectForm = `
+  <form id="create_subject_form">
+    <input id="name" type="text" name="name" placeholder="Subject Name"></input>
+    <br>    <br>    <br>
+    <input id="submit" name="submit" type="submit" value="Add Subject"></input>
+  </form>
+  `
+  populateFlaschardField(subjectForm)
+}
+
+
 
 function getSubjects() {
   fetch(endPointSubjects)
@@ -75,10 +89,10 @@ function createFormHandler(e) {
   const definitionInput = document.querySelector('#definition').value
   const subjectId = parseInt(document.querySelector('#subject').value)
   const userId = 1
-  postFetch (termInput, definitionInput, subjectId, userId)
+  posFlashcardtFetch (termInput, definitionInput, subjectId, userId)
 }
 
-function postFetch (term, definition, subject_id, user_id) {
+function postFlashcardFetch (term, definition, subject_id, user_id) {
   const flashcardFormData = {term, definition, subject_id, user_id}
 
   fetch(endPointFlashcards, {
