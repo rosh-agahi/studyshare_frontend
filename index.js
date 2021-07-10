@@ -15,15 +15,15 @@ function populateFlaschardField(markup) {
 function renderForm() {
   const flashcardForm = `
   <form id="create_flashcard_form">
-    <input id="term" type="text" name="term" placeholder="Term"></input>
-    <br>
-    <textarea id="definition" type="text" name="definition" placeholder="Definition"></textarea>
-    <br>
     <select id="subject" type="text" name="subject" placeholder="Select or Create New Subject"></input>
       <option value="1">Brewing</option>
       <option value="2">Geometry</option>
       <option value="3">Organic Chemistry</option>
     </select>
+    <br>
+    <input id="term" type="text" name="term" placeholder="Term"></input>
+    <br>
+    <textarea id="definition" type="text" name="definition" placeholder="Definition"></textarea>
     <br>    <br>    <br>
     <input id="submit" name="submit" type="submit" value="Add Flashcard"></input>
   </form>

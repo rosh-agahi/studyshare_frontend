@@ -60,6 +60,8 @@ input.text_field, input, textarea, select {
   padding: 10px;
   font-family: 'Shadows Into Light', sans-serif;
   margin-bottom: 5px;
+  font-size: 15px;
+  letter-spacing: 2px;
 }
 
 select {
@@ -102,6 +104,7 @@ button {
   vertical-align: top;
   font-weight: bold;
   font-size: 11px;
+  letter-spacing: normal;
 
 }
 
