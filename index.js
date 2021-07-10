@@ -17,7 +17,7 @@ function populateFlaschardField(markup) {
 
 function renderFlashcardForm() {
   const flashcardForm = `
-  <form id="create_flashcard_form">
+  <form id="create_flashcard_form" autocomplete="off">
     <select id="subject" type="text" name="subject" placeholder="Select or Create New Subject"></input>
       <option value="1">Brewing</option>
       <option value="2">Geometry</option>
@@ -37,7 +37,7 @@ function renderFlashcardForm() {
 
 function renderSubjectForm() {
   const subjectForm = `
-  <form id="create_subject_form">
+  <form id="create_subject_form" autocomplete="off">
     <input id="name" type="text" name="name" placeholder="Subject Name"></input>
     <br>    <br>    <br>
     <input id="submit" name="submit" type="submit" value="Add Subject"></input>
