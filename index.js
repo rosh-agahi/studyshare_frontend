@@ -27,22 +27,35 @@ function renderFlashcardForm() {
     <input id="term" type="text" name="term" placeholder="Term"></input>
     <br>
     <textarea id="definition" type="text" name="definition" placeholder="Definition"></textarea>
-    <br>    <br>    <br>
+    <br>
     <input id="submit" name="submit" type="submit" value="Add Flashcard"></input>
   </form>
   `
+  hideStudyButtons()
   populateFlaschardField(flashcardForm)
 }
 
+function hideStudyButtons() {
+  document.querySelector('#buttons').innerHTML = ""
+}
+
+function showStudyButtons() {
+  const buttons = `
+  <button id="reveal" class="button">Reveal</button>
+  <button id="next" class="button">Next</button>
+`
+  document.querySelector('#buttons').innerHTML = buttons
+}
 
 function renderSubjectForm() {
   const subjectForm = `
   <form id="create_subject_form" autocomplete="off">
     <input id="name" type="text" name="name" placeholder="Subject Name"></input>
-    <br>    <br>    <br>
+    <br>
     <input id="submit" name="submit" type="submit" value="Add Subject"></input>
   </form>
   `
+  hideStudyButtons()
   populateFlaschardField(subjectForm)
 
   let createSubjectForm = document.querySelector("#create_subject_form")

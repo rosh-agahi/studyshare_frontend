@@ -52,8 +52,8 @@ select#subject_selector_input {
   text-align-last: center;
 }
 
-#select_subject {
-  background-image: linear-gradient(315deg, #607333, #19411F, #023924);
+#select_subject, input#submit {
+  background-image: linear-gradient(315deg, gold, darksalmon 45%);
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
@@ -120,7 +120,7 @@ select {
 button {
 }
 
-.button, input#submit {
+.button {
   font-family: 'Montserrat', sans-serif;
   color: white;
   width: 80px;
@@ -161,11 +161,12 @@ html {
 }
 
 #display {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 50px;
 }
 
 #flashcard {
