@@ -89,7 +89,13 @@ function createFormHandler(e) {
   const definitionInput = document.querySelector('#definition').value
   const subjectId = parseInt(document.querySelector('#subject').value)
   const userId = 1
-  posFlashcardtFetch (termInput, definitionInput, subjectId, userId)
+  postFlashcardFetch (termInput, definitionInput, subjectId, userId)
+}
+
+function createSubjectFormHandler(e) {
+  e.preventDefault()
+  const nameInput = document.querySelector('#name').value
+  // need postSubjectFetch
 }
 
 function postFlashcardFetch (term, definition, subject_id, user_id) {
