@@ -1,54 +1,84 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
 
 p {
-  color: green;
+  color: white;
+}
+
+header {
+  margin: 0;
+}
+
+.logo_container {
+  background-image: linear-gradient(315deg, #607333, #19411F, #023924);
+  padding-left: 15px;
+  padding-top: 5px;
+  display: flex;
+  justify-content: space-between;
+
+  align-content: center;
 }
 
 .logo {
   height: 180px;
 }
 
-header {
-  margin: -10px;
-}
-
-.logo_container {
-  background-image: linear-gradient(315deg, #01C4CC, #3b4284 45%);
-  margin: 0;
-  padding: 15px;
-  padding-top: 20px;
-  padding-bottom: 0;
+.page_container {
   display: flex;
   flex-direction: row;
-  align-content: center;
+  flex-wrap: wrap;
 }
 
-.page_container {
-  padding: 5px 15px;
+.left_column {
+  width: 23%;
+  height: 550px;
+  background-color: #202114;
+  padding: 5px 23px;
 }
+
+.right_column {
+}
+
 
 .user_container {
-  width: 80%;
+  width: 50%;
   text-align: center;
   padding: 60px 0px;
 }
 
 body {
-  background: #000747;
+  margin: 0;
+  background: papayawhip;
 }
 
 input.text_field {
-  background-color: #8A8CC0;
+  background-color: papayawhip;
   width: 200px;
-  color: white;
+  color: #023924;
   border: none;
   border-radius: 5px;
   padding: 10px;
   font-family: 'Montserrat', sans-serif;
+
 }
 
 ::placeholder {
-  color: white;
+  color: #023924;
+}
+
+#study_mode {
+}
+
+#all_or_mine {
+}
+
+#new_flashcard {
+}
+
+.mode_button {
+
+}
+
+button {
 }
 
 .button {
@@ -63,7 +93,7 @@ input.text_field {
   margin-top: -20px;
   white-space: normal;
   word-wrap: break-word;
-  background-image: linear-gradient(315deg, gold, mediumvioletred 45%);
+  background-image: linear-gradient(315deg, gold, darksalmon 45%);
   vertical-align: top;
   padding-bottom: 1px;
 
@@ -74,6 +104,15 @@ input.text_field {
 }
 
 .selected{}
+
+footer {
+  background-color: darksalmon;
+  text-align: center;
+  color: white;
+  position: absolute;
+  width: 100%;
+  font-weight: bold;
+}
 
 html {
   font-family: 'Montserrat', sans-serif;

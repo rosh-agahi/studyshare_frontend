@@ -30,6 +30,21 @@
     <div class="page_container">
 
       <div class="left_column">
+        <p>Select Subject: </p>
+          <form>
+            <input type="text" id="subject_select" class="text_field"></input>
+          </form>
+
+        <p>Show first: </p>
+          <button id="study_mode" class="mode_button">Term</button>
+        <p>Flashcard scope: </p>
+          <button id="all_or_mine" class="mode_button">My Cards</button>
+        <br />
+        <br />
+        <br />
+        <br />
+        <button id="new_flashcard" class="mode_button">Add Card</button>
+
         <h2>New Flashcard</h2>
         <form id="create_flashcard_form">
           <input id="term" type="text" name="term" placeholder="Term"></input>
@@ -46,20 +61,17 @@
         </form>
       </div>
 
-      <div class="middle_column">
-        <div id="new_flashcard">
-
-        </div>
-
-        <div id="flashcard-container">
-        </div>
-      </div>
-
       <div class="right_column">
-
+        <div id="display_flashcard">
+          <p>Here is the flashcard!</p>
+        </div>
       </div>
     </div>
 
 
   </body>
+
+  <footer>
+      <p>Roshanak Agahi // Project #4 JavaScript SPA // July 2021 </p>
+  </footer>
 </html>
