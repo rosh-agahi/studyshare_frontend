@@ -51,15 +51,19 @@ body {
   background: papayawhip;
 }
 
-input.text_field {
+input.text_field, input, textarea, select {
   background-color: papayawhip;
   width: 200px;
-  color: #023924;
+  color: #202114;
   border: none;
   border-radius: 5px;
   padding: 10px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Shadows Into Light', sans-serif;
+  margin-bottom: 5px;
+}
 
+select {
+  width: 220px
 }
 
 ::placeholder {
@@ -82,7 +86,7 @@ input.text_field {
 button {
 }
 
-.button {
+.button, input#submit {
   font-family: 'Montserrat', sans-serif;
   color: white;
   width: 80px;
@@ -96,8 +100,8 @@ button {
   word-wrap: break-word;
   background-image: linear-gradient(315deg, gold, darksalmon 45%);
   vertical-align: top;
-  padding-bottom: 1px;
   font-weight: bold;
+  font-size: 11px;
 
 }
 
@@ -150,11 +154,11 @@ html {
 
 h3 {
   font-weight: normal;
-  font-family: 'Shadows Into Light', cursive;
+  font-family: 'Shadows Into Light', sans-serif;
   letter-spacing: 2px;
 }
 
 h2 {
-  font-family: 'Shadows Into Light', cursive;
+  font-family: 'Shadows Into Light', sans-serif;
   letter-spacing: 2px;
 }

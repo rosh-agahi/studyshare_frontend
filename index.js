@@ -1,18 +1,41 @@
 const endPoint = "http://127.0.0.1:3000/api/v1/flashcards"
 
 document.addEventListener('DOMContentLoaded', () => {
-  getFlashcards()
-
+  renderForm()
   let createFlashcardForm = document.querySelector("#create_flashcard_form")
 
   createFlashcardForm.addEventListener("submit", (e) => createFormHandler(e))
 });
 
 
+function populateFlaschardField(markup) {
+  document.querySelector('#flashcard').innerHTML = markup
+}
+
+function renderForm() {
+  const flashcardForm = `
+  <form id="create_flashcard_form">
+    <input id="term" type="text" name="term" placeholder="Term"></input>
+    <br>
+    <textarea id="definition" type="text" name="definition" placeholder="Definition"></textarea>
+    <br>
+    <select id="subject" type="text" name="subject" placeholder="Select or Create New Subject"></input>
+      <option value="1">Brewing</option>
+      <option value="2">Geometry</option>
+      <option value="3">Organic Chemistry</option>
+    </select>
+    <br>    <br>    <br>
+    <input id="submit" name="submit" type="submit" value="Add Flashcard"></input>
+  </form>
+  `
+  populateFlaschardField(flashcardForm)
+
+  }
+
 function getFlashcards() {
   fetch(endPoint)
   .then(response => response.json())
-  .then(document.querySelector('#flashcard-container').innerHTML = "")
+  //.then(document.querySelector('#flashcard-container').innerHTML = "")
   .then(flashcards => {
     flashcards.data.forEach(fc => {
       displayFlashcard(fc)
@@ -22,15 +45,10 @@ function getFlashcards() {
 
 function displayFlashcard(card) {
   const flashcardMarkup = `
-
-    <div data-id=${card.id}>
       <h2>${card.attributes.term}</h2>
-      <h4>${card.attributes.subject.name}</h4>
-      <p>${card.attributes.definition}</p>
-      <br>
-    </div>`;
+      <h3>${card.attributes.definition}</h3>`;
 
-    document.querySelector('#flashcard-container').innerHTML += flashcardMarkup
+    document.querySelector('#flashcard').innerHTML = flashcardMarkup
 }
 
 function createFormHandler(e) {
@@ -78,6 +96,7 @@ function nextCard() {
 
 function flipCard() {
   // flip card to reveal answer
+
 }
 
 function selectRandomFlashcard() {
