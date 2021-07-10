@@ -1,6 +1,8 @@
-const endPoint = "http://127.0.0.1:3000/api/v1/flashcards"
+const endPointFlashcards = "http://127.0.0.1:3000/api/v1/flashcards"
+const endPointSubjects = "http://127.0.0.1:3000/api/v1/subjects"
 
 document.addEventListener('DOMContentLoaded', () => {
+  getSubjects()
   renderForm()
   let createFlashcardForm = document.querySelector("#create_flashcard_form")
 
@@ -29,11 +31,27 @@ function renderForm() {
   </form>
   `
   populateFlaschardField(flashcardForm)
+}
 
-  }
+function getSubjects() {
+  fetch(endPointSubjects)
+  .then(response => response.json())
+  .then(subjects => {
+    subjects.data.forEach(s => {
+      addSubjectToSelector(s)
+    })
+  })
+}
+
+function addSubjectToSelector(subject) {
+  const subjectSelectorMarkup = `
+  <option value="${subject.id}">${subject.attributes.name}</option>
+  `
+  document.querySelector('#subject_selector_input').innerHTML += subjectSelectorMarkup
+}
 
 function getFlashcards() {
-  fetch(endPoint)
+  fetch(endPointFlashcards)
   .then(response => response.json())
   //.then(document.querySelector('#flashcard-container').innerHTML = "")
   .then(flashcards => {
@@ -48,7 +66,7 @@ function displayFlashcard(card) {
       <h2>${card.attributes.term}</h2>
       <h3>${card.attributes.definition}</h3>`;
 
-    document.querySelector('#flashcard').innerHTML = flashcardMarkup
+  populateFlaschardField(flashcardMarkup)
 }
 
 function createFormHandler(e) {
@@ -63,7 +81,7 @@ function createFormHandler(e) {
 function postFetch (term, definition, subject_id, user_id) {
   const flashcardFormData = {term, definition, subject_id, user_id}
 
-  fetch(endPoint, {
+  fetch(endPointFlashcards, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(flashcardFormData)
