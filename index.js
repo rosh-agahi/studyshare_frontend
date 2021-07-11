@@ -189,7 +189,7 @@ function createFormHandler(e) {
   const termInput = document.querySelector('#term').value
   const definitionInput = document.querySelector('#definition').value
   const subjectId = parseInt(document.querySelector('#subject').value)
-  const userId = 1
+  const userId = matchingUserID
   postFlashcardFetch(termInput, definitionInput, subjectId, userId)
 }
 
