@@ -97,6 +97,7 @@ function getSubjects(form) {
 
 function createUserLoginHandler(e) {
   e.preventDefault()
+  usernameErrors("")
   const userLoginInput = document.querySelector('#username_input').value
   getUser(userLoginInput)
   // renderFlashcardForm()
@@ -112,13 +113,26 @@ function getUser(findUser) {
     users.data.forEach(u => {
       if (u.attributes.username == findUser) {
         i += 1;
-        document.querySelector('#user').innerHTML = findUser;
+        updateHeading(findUser);
         matchingUserID = u.id;
       }
     })
-  if (i > 0) {userLoggedIn = true}
-  if (i == 0) {document.querySelector('#error_message').innerHTML = "User Not Found. Hit Register."}
+  if (i > 0) {
+    userLoggedIn = true;
+    renderFlashcardForm()
+    }
+  if (i == 0) {usernameErrors("User Not Found. Hit Register.")}
   })
+}
+
+function updateHeading(username) {
+  document.querySelector('#welcome').innerHTML = "Hey there, "
+  document.querySelector('#exclamation').innerHTML = "!"
+  document.querySelector('#user').innerHTML = username;
+}
+
+function usernameErrors(message) {
+  document.querySelector('#error_message').innerHTML = message
 }
 
 function addSubjectToSelector(subject, formField) {
