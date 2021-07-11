@@ -2,7 +2,8 @@ const endPointFlashcards = "http://127.0.0.1:3000/api/v1/flashcards"
 const endPointSubjects   = "http://127.0.0.1:3000/api/v1/subjects"
 const endPointUsers      = "http://127.0.0.1:3000/api/v1/users"
 const endPointLogin      = "http://127.0.0.1:3000/api/v1/login"
-let userLoggedIn = false
+
+let userLoggedIn = [false]
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -26,6 +27,7 @@ function requestLogin() {
       <input class="button" id="login_button" name="login_button" type="submit" value="Login"></input>
     </form>
   </div>
+  <p id="error_message"></p>
 `
   populateFlaschardField(login)
 }
@@ -93,22 +95,31 @@ function getSubjects(form) {
   })
 }
 
-function getUsers(findUser) {
+function createUserLoginHandler(e) {
+  e.preventDefault()
+  const userLoginInput = document.querySelector('#username_input').value
+  getUser(userLoginInput)
+  // renderFlashcardForm()
+}
+
+function getUser(findUser) {
   let i = 0;
+  let matchingUserId = 0;
+
   fetch(endPointUsers)
   .then(response => response.json())
   .then(users => {
     users.data.forEach(u => {
-      if (u.attributes.username == findUser) {i += 1}
+      if (u.attributes.username == findUser) {
+        i += 1;
+        document.querySelector('#user').innerHTML = findUser;
+        matchingUserID = u.id;
+      }
     })
   if (i > 0) {userLoggedIn = true}
+  if (i == 0) {document.querySelector('#error_message').innerHTML = "User Not Found. Hit Register."}
   })
 }
-
-function userLogin(){
-  
-}
-
 
 function addSubjectToSelector(subject, formField) {
   const subjectSelectorMarkup = `
@@ -141,12 +152,6 @@ function createUserRegisterHandler(e) {
   const usernameInput = document.querySelector('#username_input').value
   postUserFetch(usernameInput)
 
-  // renderFlashcardForm()
-}
-
-function createUserLoginHandler(e) {
-  e.preventDefault()
-  postUserLogin()
   // renderFlashcardForm()
 }
 

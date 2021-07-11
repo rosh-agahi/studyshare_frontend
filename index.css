@@ -16,6 +16,10 @@ p.box {
   color: var(--dark-green)
 }
 
+p#error_message {
+  color: red;
+}
+
 header {
   margin: 0;
 }
