@@ -1,11 +1,12 @@
 const endPointFlashcards = "http://127.0.0.1:3000/api/v1/flashcards"
 const endPointSubjects   = "http://127.0.0.1:3000/api/v1/subjects"
 const endPointUsers      = "http://127.0.0.1:3000/api/v1/users"
-
-const usernameInput = document.querySelector('#username_input').value
+const endPointLogin      = "http://127.0.0.1:3000/api/v1/login"
+let userLoggedIn = false
 
 
 document.addEventListener('DOMContentLoaded', () => {
+
   getSubjects('#subject_selector_input')
   requestLogin()
 
@@ -92,12 +93,29 @@ function getSubjects(form) {
   })
 }
 
-    function addSubjectToSelector(subject, formField) {
-      const subjectSelectorMarkup = `
-      <option value="${subject.id}">${subject.attributes.name}</option>
-      `
-      document.querySelector(formField).innerHTML += subjectSelectorMarkup
-    }
+function getUsers(findUser) {
+  let i = 0;
+  fetch(endPointUsers)
+  .then(response => response.json())
+  .then(users => {
+    users.data.forEach(u => {
+      if (u.attributes.username == findUser) {i += 1}
+    })
+  if (i > 0) {userLoggedIn = true}
+  })
+}
+
+function userLogin(){
+  
+}
+
+
+function addSubjectToSelector(subject, formField) {
+  const subjectSelectorMarkup = `
+  <option value="${subject.id}">${subject.attributes.name}</option>
+  `
+  document.querySelector(formField).innerHTML += subjectSelectorMarkup
+}
 
 function getFlashcards() {
   fetch(endPointFlashcards)
@@ -120,6 +138,7 @@ function displayFlashcard(card) {
 
 function createUserRegisterHandler(e) {
   e.preventDefault()
+  const usernameInput = document.querySelector('#username_input').value
   postUserFetch(usernameInput)
 
   // renderFlashcardForm()
@@ -127,16 +146,17 @@ function createUserRegisterHandler(e) {
 
 function createUserLoginHandler(e) {
   e.preventDefault()
-
-  document.querySelector('#user').innerHTML = usernameInput
+  postUserLogin()
   // renderFlashcardForm()
 }
 
-// function fetchUser() {
-//   fetch(endPointUsers)
+// function postUserLogin() {
+//   users = {
+//     fetch(endPointUsers)
+//     .then(response => response.json())
+//   }
 // }
 //
-
 function postUserFetch(username) {
   const userFormData = {username}
 
@@ -151,15 +171,6 @@ function postUserFetch(username) {
     console.log(user);
   })
 }
-
-
-// function userLogin(userInfo) {
-//   const login_button = document.querySelector('#login_button')
-//   const register_button = document.querySelector('#register_button')
-//
-//   if login_button.onclick
-//
-// }
 
 function createFormHandler(e) {
   e.preventDefault()
