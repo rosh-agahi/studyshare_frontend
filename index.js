@@ -7,12 +7,40 @@ let userLoggedIn = [false]
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  getSubjects('#subject_selector_input')
   requestLogin()
 
   document.querySelector("#register_button").addEventListener("click", (e) => createUserRegisterHandler(e))
   document.querySelector("#login_button").addEventListener("click", (e) => createUserLoginHandler(e))
 });
+
+function showControls() {
+  const controls = `
+    <p>Select Subject: </p>
+    <form id="subjects" autocomplete="off">
+      <select id="subject_selector_input" type="text" name="subject_selector_input">
+
+      </select>
+      <input id="select_subject" type="submit" name="select_subject" value="Start Studying"></input>
+    </form>
+
+    <br>
+
+    <p>Show first: </p>
+      <button id="study_mode" class="mode_button">Term</button>
+    <p>Flashcard scope: </p>
+      <button id="all_or_mine" class="mode_button">My Cards</button>
+
+    <br>
+    <div class="new_buttons">
+      <button onclick="renderFlashcardForm()" style="margin: 5px;" id="new_flashcard" class="button">Add New Card</button>
+      <button onclick="renderSubjectForm()" style="margin: 5px;" id="new_subject" class="button">Add New Subject</button>
+    </div>
+  `
+  document.querySelector('#left_column').innerHTML = controls
+
+  getSubjects('#subject_selector_input')
+
+}
 
 function requestLogin() {
   const login = `
@@ -99,7 +127,6 @@ function createUserLoginHandler(e) {
   usernameErrors("")
   const userLoginInput = document.querySelector('#username_input').value
   getUser(userLoginInput)
-  // renderFlashcardForm()
 }
 
 function getUser(findUser) {
@@ -118,7 +145,8 @@ function getUser(findUser) {
     })
   if (i > 0) {
     userLoggedIn = true;
-    renderFlashcardForm()
+    renderFlashcardForm();
+    showControls()
     }
   if (i == 0) {usernameErrors("User Not Found. Hit Register.")}
   })

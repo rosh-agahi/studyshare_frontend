@@ -20,6 +20,13 @@ p#error_message {
   color: red;
 }
 
+p.welcome {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: -0;
+  line-height: 0px;
+}
+
 header {
   margin: 0;
 }
@@ -44,7 +51,7 @@ header {
   flex-wrap: wrap;
 }
 
-.left_column {
+#left_column {
   width: 23%;
   height: 550px;
   background-color: var(--brown);
@@ -83,7 +90,7 @@ select#subject_selector_input {
   width: 75%;
 }
 
-.right_column {
+#right_column {
   width: 70%;
 }
 
