@@ -2,6 +2,9 @@ const endPointFlashcards = "http://127.0.0.1:3000/api/v1/flashcards"
 const endPointSubjects   = "http://127.0.0.1:3000/api/v1/subjects"
 const endPointUsers      = "http://127.0.0.1:3000/api/v1/users"
 
+const usernameInput = document.querySelector('#username_input').value
+
+
 document.addEventListener('DOMContentLoaded', () => {
   getSubjects('#subject_selector_input')
   requestLogin()
@@ -117,7 +120,6 @@ function displayFlashcard(card) {
 
 function createUserRegisterHandler(e) {
   e.preventDefault()
-  const usernameInput = document.querySelector('#username_input').value
   postUserFetch(usernameInput)
 
   // renderFlashcardForm()
@@ -125,12 +127,15 @@ function createUserRegisterHandler(e) {
 
 function createUserLoginHandler(e) {
   e.preventDefault()
-  const usernameInput = document.querySelector('#username_input').value
-  // postUserFetch(usernameInput)
 
+  document.querySelector('#user').innerHTML = usernameInput
   // renderFlashcardForm()
 }
 
+// function fetchUser() {
+//   fetch(endPointUsers)
+// }
+//
 
 function postUserFetch(username) {
   const userFormData = {username}
