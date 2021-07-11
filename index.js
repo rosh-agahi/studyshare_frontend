@@ -1,15 +1,29 @@
 const endPointFlashcards = "http://127.0.0.1:3000/api/v1/flashcards"
-const endPointSubjects = "http://127.0.0.1:3000/api/v1/subjects"
+const endPointSubjects   = "http://127.0.0.1:3000/api/v1/subjects"
+const endPointUsers      = "http://127.0.0.1:3000/api/v1/users"
 
 document.addEventListener('DOMContentLoaded', () => {
   getSubjects('#subject_selector_input')
-  renderFlashcardForm()
+  requestLogin()
 
-  let createFlashcardForm = document.querySelector("#create_flashcard_form")
-  createFlashcardForm.addEventListener("submit", (e) => createFormHandler(e))
-
+  document.querySelector("#login").addEventListener("submit", (e) => createUserFormHandler(e))
 });
 
+function requestLogin() {
+  const login = `
+  <p class="box"><strong>Enter a username to begin.</strong> <br>All flashcards you create will be stored under this username when you come back later.</p>
+  <p class="box">Good luck studying! You're gonna ace this.</p>
+  <br>
+  <div class="user_login_form" autocomplete="off">
+    <form id="login" autocomplete="off">
+        <input class="text_field" id="username_input" type="text" name="username_input" placeholder="username"></input>
+        <input class="button" id="login_button" name="login_button" type="submit" value="Register/ Login"></input>
+    </form>
+  </div>
+`
+populateFlaschardField(login)
+
+}
 
 function populateFlaschardField(markup) {
   document.querySelector('#flashcard').innerHTML = markup
@@ -33,6 +47,8 @@ function renderFlashcardForm() {
   getSubjects('#subject')
   hideStudyButtons()
 
+  let createFlashcardForm = document.querySelector("#create_flashcard_form")
+  createFlashcardForm.addEventListener("submit", (e) => createFormHandler(e))
 }
 
 function hideStudyButtons() {
@@ -60,7 +76,6 @@ function renderSubjectForm() {
 
   let createSubjectForm = document.querySelector("#create_subject_form")
   createSubjectForm.addEventListener("submit", (e) => createSubjectFormHandler(e))
-
 }
 
 function getSubjects(form) {
@@ -73,12 +88,12 @@ function getSubjects(form) {
   })
 }
 
-function addSubjectToSelector(subject, formField) {
-  const subjectSelectorMarkup = `
-  <option value="${subject.id}">${subject.attributes.name}</option>
-  `
-  document.querySelector(formField).innerHTML += subjectSelectorMarkup
-}
+    function addSubjectToSelector(subject, formField) {
+      const subjectSelectorMarkup = `
+      <option value="${subject.id}">${subject.attributes.name}</option>
+      `
+      document.querySelector(formField).innerHTML += subjectSelectorMarkup
+    }
 
 function getFlashcards() {
   fetch(endPointFlashcards)
@@ -99,16 +114,37 @@ function displayFlashcard(card) {
   populateFlaschardField(flashcardMarkup)
 }
 
+function createUserFormHandler(e) {
+  e.preventDefault()
+  const usernameInput = document.querySelector('#username_input').value
+  postUserFetch(usernameInput)
+}
+
+function postUserFetch(username) {
+  const userFormData = {username}
+
+  fetch(endPointUsers, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(userFormData)
+  })
+
+  .then(response => response.json())
+  .then(user => {
+    console.log(user);
+  })
+}
+
 function createFormHandler(e) {
   e.preventDefault()
   const termInput = document.querySelector('#term').value
   const definitionInput = document.querySelector('#definition').value
   const subjectId = parseInt(document.querySelector('#subject').value)
   const userId = 1
-  postFlashcardFetch (termInput, definitionInput, subjectId, userId)
+  postFlashcardFetch(termInput, definitionInput, subjectId, userId)
 }
 
-function postFlashcardFetch (term, definition, subject_id, user_id) {
+function postFlashcardFetch(term, definition, subject_id, user_id) {
   const flashcardFormData = {term, definition, subject_id, user_id}
 
   fetch(endPointFlashcards, {
@@ -149,13 +185,13 @@ function postSubjectFetch (name) {
 }
 
 function newUser() {
-  //new user form, just username
   //posts new user to database
   //also logs in user
 }
 
 function loginUser() {
   //needs to set current_user
+
 }
 
 function logout() {

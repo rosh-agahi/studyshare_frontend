@@ -1,7 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
+:root{
+  --brown: #202114;
+  --light-green: #607333;
+  --dark-green: #19411F;
+  --darkest-green: #023924;
+}
+
 p {
   color: white;
+}
+
+p.box {
+  color: var(--dark-green)
 }
 
 header {
@@ -9,7 +21,7 @@ header {
 }
 
 .logo_container {
-  background-image: linear-gradient(315deg, #607333, #19411F, #023924);
+  background-image: linear-gradient(315deg, var(--light-green), var(--dark-green), var(--darkest-green));
   padding-left: 15px;
   padding-top: 5px;
   display: flex;
@@ -31,7 +43,7 @@ header {
 .left_column {
   width: 23%;
   height: 550px;
-  background-color: #202114;
+  background-color: var(--brown);
   padding: 5px 23px;
   display: flex;
   flex-direction: column;
@@ -86,8 +98,8 @@ body {
 input.text_field, input, textarea, select {
   background-color: papayawhip;
   width: 200px;
-  color: #202114;
-  border: none;
+  color: var(--brown);
+  border: 1px solid gold;
   border-radius: 5px;
   padding: 10px;
   font-family: 'Shadows Into Light', sans-serif;
@@ -101,7 +113,7 @@ select {
 }
 
 ::placeholder {
-  color: #023924;
+  color: var(--brown);
 }
 
 #study_mode {
@@ -127,7 +139,7 @@ button {
   height: 80px;
   border-radius: 50%;
   border: none;
-  box-shadow: 2px 2px 15px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.1);
   margin: 0px 20px;
   margin-top: -20px;
   white-space: normal;
