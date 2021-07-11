@@ -108,6 +108,10 @@ input.text_field, input, textarea, select {
   letter-spacing: 2px;
 }
 
+input#username_input {
+  text-align: center;
+}
+
 select {
   width: 220px
 }
@@ -182,8 +186,8 @@ html {
 }
 
 #flashcard {
-  width: 400px;
-  height: 200px;
+  width: 500px;
+  height: 250px;
   color: #023924;
   background-color: cornsilk;
   border: 1px solid white;

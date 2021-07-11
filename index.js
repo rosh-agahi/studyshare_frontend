@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   getSubjects('#subject_selector_input')
   requestLogin()
 
-  document.querySelector("#login").addEventListener("submit", (e) => createUserFormHandler(e))
+  document.querySelector("#register_button").addEventListener("click", (e) => createUserRegisterHandler(e))
+  document.querySelector("#login_button").addEventListener("click", (e) => createUserLoginHandler(e))
 });
 
 function requestLogin() {
@@ -16,13 +17,13 @@ function requestLogin() {
   <br>
   <div class="user_login_form" autocomplete="off">
     <form id="login" autocomplete="off">
-        <input class="text_field" id="username_input" type="text" name="username_input" placeholder="username"></input>
-        <input class="button" id="login_button" name="login_button" type="submit" value="Register/ Login"></input>
+      <input class="button" id="register_button" name="register_button" type="submit" value="Register"></input>
+      <input class="text_field" id="username_input" type="text" name="username_input" placeholder="username"></input>
+      <input class="button" id="login_button" name="login_button" type="submit" value="Login"></input>
     </form>
   </div>
 `
-populateFlaschardField(login)
-
+  populateFlaschardField(login)
 }
 
 function populateFlaschardField(markup) {
@@ -114,11 +115,22 @@ function displayFlashcard(card) {
   populateFlaschardField(flashcardMarkup)
 }
 
-function createUserFormHandler(e) {
+function createUserRegisterHandler(e) {
   e.preventDefault()
   const usernameInput = document.querySelector('#username_input').value
   postUserFetch(usernameInput)
+
+  // renderFlashcardForm()
 }
+
+function createUserLoginHandler(e) {
+  e.preventDefault()
+  const usernameInput = document.querySelector('#username_input').value
+  // postUserFetch(usernameInput)
+
+  // renderFlashcardForm()
+}
+
 
 function postUserFetch(username) {
   const userFormData = {username}
@@ -134,6 +146,15 @@ function postUserFetch(username) {
     console.log(user);
   })
 }
+
+
+// function userLogin(userInfo) {
+//   const login_button = document.querySelector('#login_button')
+//   const register_button = document.querySelector('#register_button')
+//
+//   if login_button.onclick
+//
+// }
 
 function createFormHandler(e) {
   e.preventDefault()
