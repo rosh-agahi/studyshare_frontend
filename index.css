@@ -92,6 +92,9 @@ select#subject_selector_input {
   width: 80%;
   text-align: center;
   padding: 60px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 body {
@@ -217,4 +220,8 @@ h3 {
 h2 {
   font-family: 'Shadows Into Light', sans-serif;
   letter-spacing: 2px;
+}
+
+.user_logged_in_name {
+  margin-top: 17px;
 }

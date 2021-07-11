@@ -5,7 +5,6 @@ const endPointLogin      = "http://127.0.0.1:3000/api/v1/login"
 
 let userLoggedIn = [false]
 
-
 document.addEventListener('DOMContentLoaded', () => {
 
   getSubjects('#subject_selector_input')
@@ -113,7 +112,7 @@ function getUser(findUser) {
     users.data.forEach(u => {
       if (u.attributes.username == findUser) {
         i += 1;
-        updateHeading(findUser);
+        updateHeadingOnLogin(findUser);
         matchingUserID = u.id;
       }
     })
@@ -125,10 +124,11 @@ function getUser(findUser) {
   })
 }
 
-function updateHeading(username) {
+function updateHeadingOnLogin(username) {
   document.querySelector('#welcome').innerHTML = "Hey there, "
   document.querySelector('#exclamation').innerHTML = "!"
   document.querySelector('#user').innerHTML = username;
+  document.querySelector('#user_logout_button').innerHTML = '<input class="button" id="logout_button" onclick="logout()" type="submit" value="Logout"></input>'
 }
 
 function usernameErrors(message) {
@@ -165,17 +165,10 @@ function createUserRegisterHandler(e) {
   e.preventDefault()
   const usernameInput = document.querySelector('#username_input').value
   postUserFetch(usernameInput)
-
-  // renderFlashcardForm()
+  // handle errors
+  // getUser(usernameInput)
 }
 
-// function postUserLogin() {
-//   users = {
-//     fetch(endPointUsers)
-//     .then(response => response.json())
-//   }
-// }
-//
 function postUserFetch(username) {
   const userFormData = {username}
 
@@ -240,18 +233,8 @@ function postSubjectFetch (name) {
   })
 }
 
-function newUser() {
-  //posts new user to database
-  //also logs in user
-}
-
-function loginUser() {
-  //needs to set current_user
-
-}
-
 function logout() {
-  //unset current_user
+  location.reload()
 }
 
 function nextCard() {
