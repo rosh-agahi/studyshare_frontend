@@ -19,7 +19,7 @@ function showControls() {
       <select id="subject_selector_input" type="text" name="subject_selector_input">
 
       </select>
-      <button id="select_subject" onclick="getFlashcards()">Start Studying</button>
+      <button id="select_subject" onclick="studyLoop()">Start Studying</button>
 
     <br>
 
@@ -169,34 +169,46 @@ function addSubjectToSelector(subject, formField) {
   document.querySelector(formField).innerHTML += subjectSelectorMarkup
 }
 
-function getFlashcards() {
-
-  selectedSubject = parseInt(document.querySelector('#subject_selector_input').value)
-  studyCards = []
+function getFlashcards(array, num) {
+  num = 0;
 
   fetch(endPointFlashcards)
   .then(response => response.json())
   .then(flashcards => {
     flashcards.data.forEach(fc => {
-      if (fc.attributes.subject_id == selectedSubject) { studyCards.push(fc) }
+      if (fc.attributes.subject_id == selectedSubject) {
+        array.push(fc.attributes)
+        num++
+        document.querySelector('#count').innerHTML = `Flashcards: ${num}`
+      }
     })
-  })
-  console.log(studyCards)
+  });
 
-  count = studyCards.length
-  document.querySelector('#count').innerHTML = `Flashcard Count: ${count}`
-  // studyLoop(studyCards)
+  return array
 
+}
+
+function getfilteredflashcards(user_id) {
+//  this is just notes for when I filter the flashcards by user id
+//     const randomNumbers = [4, 11, 42, 14, 39];
+//     const filteredArray = randomNumbers.filter(n => {
+//       return n > 5;
+//     });
 }
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-// function studyLoop(cards) {
-//   q = 0
+function studyLoop() {
+  selectedSubject = parseInt(document.querySelector('#subject_selector_input').value)
+  studyCards = []
+  getFlashcards(studyCards)
+
+
+//  q = 0
 //   for
-// }
+}
 
 function displayFlashcardFront(card) {
   const flashcardFront = `
@@ -290,8 +302,11 @@ function nextCard() {
   // render the "front" of the next next flashcard
 
   // change button to "flip"
-  document.querySelector('#buttons').innerHTML = '<button id="flip" onclick="flip()" class="button">Flip</button>'
-
+  // document.querySelector('#buttons').innerHTML = '<button id="flip" onclick="flip()" class="button">Flip</button>'
+  // // update flip count
+  // const flipped = document.querySelector('#flip_counter').innerHTML
+  // b = parseInt(flipped)
+  // flipped = b++
 }
 
 function flipCard() {
