@@ -1,9 +1,19 @@
-const endPointFlashcards = "http://127.0.0.1:3000/api/v1/flashcards"
-const endPointSubjects   = "http://127.0.0.1:3000/api/v1/subjects"
-const endPointUsers      = "http://127.0.0.1:3000/api/v1/users"
-const endPointLogin      = "http://127.0.0.1:3000/api/v1/login"
+const endPointFlashcards = "http://127.0.0.1:3000/api/v1/flashcards";
+const endPointSubjects   = "http://127.0.0.1:3000/api/v1/subjects";
+const endPointUsers      = "http://127.0.0.1:3000/api/v1/users";
+const endPointLogin      = "http://127.0.0.1:3000/api/v1/login";
 
-let userLoggedIn = [false]
+//for user
+let userLoggedIn = [false];
+let i = 0;
+let matchingUserId = 0;
+
+//for studyLoop
+let studyCards = [];
+let selectedSubject = 0;
+let countup = 0;
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -88,13 +98,13 @@ function hideStudyButtons() {
   document.querySelector('#buttons').innerHTML = ""
 }
 
-function showStudyButtons() {
-  const buttons = `
-  <button id="reveal" class="button">Reveal</button>
-  <button id="next" class="button">Next</button>
-`
-  document.querySelector('#buttons').innerHTML = buttons
-}
+// function showStudyButtons() {
+//   const buttons = `
+//   <button id="reveal" class="button">Reveal</button>
+//   <button id="next" class="button">Next</button>
+// `
+//   document.querySelector('#buttons').innerHTML = buttons
+// }
 
 function renderSubjectForm() {
   const subjectForm = `
@@ -129,9 +139,6 @@ function createUserLoginHandler(e) {
 }
 
 function getUser(findUser) {
-  let i = 0;
-  let matchingUserId = 0;
-
   fetch(endPointUsers)
   .then(response => response.json())
   .then(users => {
@@ -169,7 +176,7 @@ function addSubjectToSelector(subject, formField) {
   document.querySelector(formField).innerHTML += subjectSelectorMarkup
 }
 
-function getFlashcards(array, num) {
+function getFlashcards(array) {
   num = 0;
 
   fetch(endPointFlashcards)
@@ -184,7 +191,7 @@ function getFlashcards(array, num) {
     })
   });
 
-  return array
+  return array;
 
 }
 
@@ -201,26 +208,30 @@ function getRandomInt(max) {
 }
 
 function studyLoop() {
-  selectedSubject = parseInt(document.querySelector('#subject_selector_input').value)
-  studyCards = []
-  getFlashcards(studyCards)
+  selectedSubject = parseInt(document.querySelector('#subject_selector_input').value);
+  getFlashcards(studyCards);
 
-
-//  q = 0
-//   for
+  while (countup < 100) {
+    c = getRandomInt(studyCards.length);
+    displayFlashcardFront(studyCards[c]);
+    showFlipCardButton();
+    displayFlashcardBack(studyCards[c]);
+    countup ++;
+    document.querySelector('#flip_counter').innerHTML = `Flipped Cards: ${countup}`;
+  }
 }
 
 function displayFlashcardFront(card) {
   const flashcardFront = `
-      <h2>${card.attributes.term}</h2>`;
+      <h2>${card.term}</h2>`;
 
   populateFlaschardField(flashcardFront)
 }
 
 function displayFlashcardBack(card) {
   const flashcardBack = `
-      <h2>${card.attributes.term}</h2>
-      <h3>${card.attributes.definition}</h3>`;
+      <h2>${card.term}</h2>
+      <h3>${card.definition}</h3>`;
 
   populateFlaschardField(flashcardBack)
 }
@@ -298,23 +309,15 @@ function logout() {
   location.reload()
 }
 
-function nextCard() {
-  // render the "front" of the next next flashcard
-
-  // change button to "flip"
-  // document.querySelector('#buttons').innerHTML = '<button id="flip" onclick="flip()" class="button">Flip</button>'
-  // // update flip count
-  // const flipped = document.querySelector('#flip_counter').innerHTML
-  // b = parseInt(flipped)
-  // flipped = b++
+function showFlipCardButton() {
+  // show button
+  document.querySelector('#buttons').innerHTML = '<button id="flip" onclick="showNextCardButton()" class="button">Flip</button>'
 }
 
-function flipCard() {
-  // flip card to reveal answer
-
+function showNextCardButton() {
+  e.preventDefault()
   // change button to "next"
-  document.querySelector('#buttons').innerHTML = '<button id="next" onclick="next()" class="button">Next</button>'
-
+  document.querySelector('#buttons').innerHTML = '<button id="next" onclick="showFlipCardButton()" class="button">Next</button>'
 }
 
 function selectMineOrAll() {
