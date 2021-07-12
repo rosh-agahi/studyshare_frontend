@@ -16,21 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
 function showControls() {
   const controls = `
     <p>Select Subject: </p>
-    <form id="subjects" autocomplete="off">
       <select id="subject_selector_input" type="text" name="subject_selector_input">
 
       </select>
-      <input id="select_subject" type="submit" name="select_subject" value="Start Studying"></input>
-    </form>
+      <button id="select_subject" onclick="subjectSelector()">Start Studying</button>
 
     <br>
 
-    <p>Show first: </p>
-      <button id="study_mode" class="mode_button">Term</button>
     <p>Flashcard scope: </p>
-      <button id="all_or_mine" class="mode_button">My Cards</button>
+    <div id="flashcard_scope">
+      <button id="my_cards" class="mode_button">My Cards</button>
+      <button id="all_cards" class="mode_button">All Cards</button>
+    </div>
 
-    <br>
+    <br><br>
     <div class="new_buttons">
       <button onclick="renderFlashcardForm()" style="margin: 5px;" id="new_flashcard" class="button">Add New Card</button>
       <button onclick="renderSubjectForm()" style="margin: 5px;" id="new_subject" class="button">Add New Subject</button>
@@ -105,7 +104,6 @@ function renderSubjectForm() {
     <input id="submit" name="submit" type="submit" value="Add Subject"></input>
   </form>
   `
-  hideStudyButtons()
   populateFlaschardField(subjectForm)
 
   let createSubjectForm = document.querySelector("#create_subject_form")
@@ -113,6 +111,7 @@ function renderSubjectForm() {
 }
 
 function getSubjects(form) {
+  document.querySelector(form).innerHTML = ""
   fetch(endPointSubjects)
   .then(response => response.json())
   .then(subjects => {
@@ -127,6 +126,11 @@ function createUserLoginHandler(e) {
   usernameErrors("")
   const userLoginInput = document.querySelector('#username_input').value
   getUser(userLoginInput)
+}
+
+function subjectSelector() {
+  selectedSubject = parseInt(document.querySelector('#subject_selector_input').value)
+  console.log(selectedSubject)
 }
 
 function getUser(findUser) {
@@ -240,7 +244,9 @@ function postFlashcardFetch(term, definition, subject_id, user_id) {
 function createSubjectFormHandler(e) {
   e.preventDefault()
   const nameInput = document.querySelector('#name').value
-  postSubjectFetch(nameInput)
+  postSubjectFetch(nameInput);
+  getSubjects('#subject_selector_input')
+
 }
 
 function postSubjectFetch (name) {
@@ -252,13 +258,7 @@ function postSubjectFetch (name) {
     body: JSON.stringify(subjectFormData)
   })
 
-  .then(response => response.json())
-  .then(subject => {
-    console.log()
-    document.querySelector('#subject_selector_input').innerHTML = ""
-    getSubjects()
-    populateFlaschardField(`<div>New Subject Added! You can begin adding flashcards for it now :)</div>` )
-  })
+  populateFlaschardField(`<div>New Subject Added! You can begin adding flashcards for it now :)</div>` );
 }
 
 function logout() {
