@@ -182,15 +182,37 @@ function getFlashcards() {
     })
   })
   console.log(studyCards)
+
+  count = studyCards.length
+  document.querySelector('#count').innerHTML = `Flashcard Count: ${count}`
+  studyLoop(studyCards)
+
 }
 
-function displayFlashcard(card) {
-  const flashcardMarkup = `
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function studyLoop(cards) {
+  q = 0
+  for
+}
+
+function displayFlashcardFront(card) {
+  const flashcardFront = `
+      <h2>${card.attributes.term}</h2>`;
+
+  populateFlaschardField(flashcardFront)
+}
+
+function displayFlashcardBack(card) {
+  const flashcardBack = `
       <h2>${card.attributes.term}</h2>
       <h3>${card.attributes.definition}</h3>`;
 
-  populateFlaschardField(flashcardMarkup)
+  populateFlaschardField(flashcardBack)
 }
+
 
 function createUserRegisterHandler(e) {
   e.preventDefault()
@@ -266,27 +288,21 @@ function logout() {
 
 function nextCard() {
   // render the "front" of the next next flashcard
+
+  // change button to "flip"
+  document.querySelector('#buttons').innerHTML = '<button id="flip" onclick="flip()" class="button">Flip</button>'
+
 }
 
 function flipCard() {
   // flip card to reveal answer
 
-}
+  // change button to "next"
+  document.querySelector('#buttons').innerHTML = '<button id="next" onclick="next()" class="button">Next</button>'
 
-function selectRandomFlashcard() {
-  // use a random number generator to select a flashcard
-  // use this in the nextFlashcard
-}
-
-function selectStudyMode() {
-  // select what is considered the "front" of the card - term or definition
 }
 
 function selectMineOrAll() {
   // allow user to only see their own flashcards or to use globally
   // created flashcards for a given subject
-}
-
-function fetchSubject() {
-  // select a Subject to view its flashcards
 }
