@@ -19,7 +19,7 @@ function showControls() {
       <select id="subject_selector_input" type="text" name="subject_selector_input">
 
       </select>
-      <button id="select_subject" onclick="subjectSelector()">Start Studying</button>
+      <button id="select_subject" onclick="getFlashcards()">Start Studying</button>
 
     <br>
 
@@ -128,11 +128,6 @@ function createUserLoginHandler(e) {
   getUser(userLoginInput)
 }
 
-function subjectSelector() {
-  selectedSubject = parseInt(document.querySelector('#subject_selector_input').value)
-  console.log(selectedSubject)
-}
-
 function getUser(findUser) {
   let i = 0;
   let matchingUserId = 0;
@@ -175,14 +170,18 @@ function addSubjectToSelector(subject, formField) {
 }
 
 function getFlashcards() {
+
+  selectedSubject = parseInt(document.querySelector('#subject_selector_input').value)
+  studyCards = []
+
   fetch(endPointFlashcards)
   .then(response => response.json())
-  //.then(document.querySelector('#flashcard-container').innerHTML = "")
   .then(flashcards => {
     flashcards.data.forEach(fc => {
-      displayFlashcard(fc)
+      if (fc.attributes.subject_id == selectedSubject) { studyCards.push(fc) }
     })
   })
+  console.log(studyCards)
 }
 
 function displayFlashcard(card) {
