@@ -185,7 +185,7 @@ function getFlashcards() {
 
   count = studyCards.length
   document.querySelector('#count').innerHTML = `Flashcard Count: ${count}`
-  studyLoop(studyCards)
+  // studyLoop(studyCards)
 
 }
 
@@ -193,10 +193,10 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-function studyLoop(cards) {
-  q = 0
-  for
-}
+// function studyLoop(cards) {
+//   q = 0
+//   for
+// }
 
 function displayFlashcardFront(card) {
   const flashcardFront = `
