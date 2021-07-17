@@ -126,6 +126,7 @@ function getSubjects(form) {
   .then(response => response.json())
   .then(subjects => {
     subjects.data.forEach(s => {
+      let newSubject = new Subject(s, s.attributes)
       addSubjectToSelector(s, form)
     })
   })
