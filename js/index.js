@@ -42,11 +42,11 @@ function updateHeadingOnLogin(username) {
   document.querySelector('#exclamation').innerHTML = "!"
   document.querySelector('#user').innerHTML = username;
   document.querySelector('#action_buttons').innerHTML = `
-    <input class="button" id="add_subject" onclick="logout()" type="submit" value="Add New Subject"></input>
-    <input class="button" id="add_flashcard" onclick="logout()" type="submit" value="Add New Flashcard"></input>
+    <input class="button" id="add_subject" onclick="renderSubjectForm()" type="submit" value="Add New Subject"></input>
+    <input class="button" id="add_flashcard" onclick="renderFlashcardForm()" type="submit" value="Add New Flashcard"></input>
     <input class="button" id="study_button" onclick="logout()" type="submit" value="Study"></input>
-    <input class="button" id="logout_button" onclick="logout()" type="submit" value="Logout"></input>`
-
+    <input class="button" id="logout_button" onclick="logout()" type="submit" value="Logout"></input>
+    `
 }
 
 
