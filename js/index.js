@@ -1,12 +1,5 @@
 const endPointFlashcards = "http://127.0.0.1:3000/api/v1/flashcards";
 const endPointSubjects   = "http://127.0.0.1:3000/api/v1/subjects";
-const endPointUsers      = "http://127.0.0.1:3000/api/v1/users";
-const endPointLogin      = "http://127.0.0.1:3000/api/v1/login";
-
-//for user
-let userLoggedIn = [false];
-let i = 0;
-let matchingUserId = 0;
 
 //for studyLoop
 let studyCards = [];
@@ -22,6 +15,27 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector("#register_button").addEventListener("click", (e) => createUserRegisterHandler(e))
   document.querySelector("#login_button").addEventListener("click", (e) => createUserLoginHandler(e))
 });
+
+function populateFlaschardField(markup) {
+  document.querySelector('#flashcard').innerHTML = markup
+}
+
+function requestLogin() {
+  const login = `
+  <p class="box"><strong>Enter a username to begin.</strong> <br>All flashcards you create will be stored under this username when you come back later.</p>
+  <p class="box">Good luck studying! You're gonna ace this.</p>
+  <br>
+  <div class="user_login_form" autocomplete="off">
+    <form id="login" autocomplete="off">
+      <input class="button" id="register_button" name="register_button" type="submit" value="Register"></input>
+      <input class="text_field" id="username_input" type="text" name="username_input" placeholder="username"></input>
+      <input class="button" id="login_button" name="login_button" type="submit" value="Login"></input>
+    </form>
+  </div>
+  <p id="error_message"></p>
+`
+  populateFlaschardField(login)
+}
 
 function showControls() {
   const controls = `
@@ -49,27 +63,6 @@ function showControls() {
 
   getSubjects('#subject_selector_input')
 
-}
-
-function requestLogin() {
-  const login = `
-  <p class="box"><strong>Enter a username to begin.</strong> <br>All flashcards you create will be stored under this username when you come back later.</p>
-  <p class="box">Good luck studying! You're gonna ace this.</p>
-  <br>
-  <div class="user_login_form" autocomplete="off">
-    <form id="login" autocomplete="off">
-      <input class="button" id="register_button" name="register_button" type="submit" value="Register"></input>
-      <input class="text_field" id="username_input" type="text" name="username_input" placeholder="username"></input>
-      <input class="button" id="login_button" name="login_button" type="submit" value="Login"></input>
-    </form>
-  </div>
-  <p id="error_message"></p>
-`
-  populateFlaschardField(login)
-}
-
-function populateFlaschardField(markup) {
-  document.querySelector('#flashcard').innerHTML = markup
 }
 
 function renderFlashcardForm() {
