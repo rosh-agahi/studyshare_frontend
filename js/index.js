@@ -190,8 +190,6 @@ function createSubjectFormHandler(e) {
   e.preventDefault()
   const nameInput = document.querySelector('#name').value
   postSubjectFetch(nameInput);
-  getSubjects('#subject_selector_input')
-
 }
 
 function postSubjectFetch (name) {
