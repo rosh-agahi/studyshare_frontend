@@ -37,6 +37,19 @@ function requestLogin() {
   populateFlaschardField(login)
 }
 
+function updateHeadingOnLogin(username) {
+  document.querySelector('#welcome').innerHTML = "Hey there, "
+  document.querySelector('#exclamation').innerHTML = "!"
+  document.querySelector('#user').innerHTML = username;
+  document.querySelector('#action_buttons').innerHTML = `
+    <input class="button" id="add_subject" onclick="logout()" type="submit" value="Add New Subject"></input>
+    <input class="button" id="add_flashcard" onclick="logout()" type="submit" value="Add New Flashcard"></input>
+    <input class="button" id="study_button" onclick="logout()" type="submit" value="Study"></input>
+    <input class="button" id="logout_button" onclick="logout()" type="submit" value="Logout"></input>`
+
+}
+
+
 function showControls() {
   const controls = `
     <p>Select Subject: </p>
@@ -53,7 +66,6 @@ function showControls() {
       <button id="all_cards" class="mode_button">All Cards</button>
     </div>
 
-    <br><br>
     <div class="new_buttons">
       <button onclick="renderFlashcardForm()" style="margin: 5px;" id="new_flashcard" class="button">Add New Card</button>
       <button onclick="renderSubjectForm()" style="margin: 5px;" id="new_subject" class="button">Add New Subject</button>
@@ -123,15 +135,6 @@ function getSubjects(form) {
       addSubjectToSelector(s, form)
     })
   })
-}
-
-
-
-function updateHeadingOnLogin(username) {
-  document.querySelector('#welcome').innerHTML = "Hey there, "
-  document.querySelector('#exclamation').innerHTML = "!"
-  document.querySelector('#user').innerHTML = username;
-  document.querySelector('#user_logout_button').innerHTML = '<input class="button" id="logout_button" onclick="logout()" type="submit" value="Logout"></input>'
 }
 
 function usernameErrors(message) {
