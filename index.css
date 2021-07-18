@@ -122,6 +122,15 @@ input.text_field, input, textarea, select {
   letter-spacing: 2px;
 }
 
+div.radio {
+  text-align: left;
+  margin: 0 140px;
+}
+
+input[type="radio"] {
+  width: 20px;
+}
+
 input#username_input {
   text-align: center;
 }

@@ -37,11 +37,10 @@ function updateHeadingOnLogin(username) {
   document.querySelector('#action_buttons').innerHTML = `
     <input class="button" id="add_subject"    onclick="renderSubjectForm()"   type="submit"   value="Add New Subject"></input>
     <input class="button" id="add_flashcard"  onclick="renderFlashcardForm()" type="submit"   value="Add New Flashcard"></input>
-    <input class="button" id="study_button"   onclick="logout()"              type="submit"   value="Study"></input>
+    <input class="button" id="study_button"   onclick="studySelections()"     type="submit"   value="Study"></input>
     <input class="button" id="logout_button"  onclick="logout()"              type="submit"   value="Logout"></input>
     `
 }
-
 
 function showControls() {
   const controls = `
