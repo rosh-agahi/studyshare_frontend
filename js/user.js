@@ -6,7 +6,7 @@ let userLoggedIn = [false];
 let i = 0;
 let matchingUserId = 0;
 
-// user registration functions:
+// --user registration functions:---------------------------
 
 function createUserRegisterHandler(e) {
   e.preventDefault()
@@ -31,6 +31,8 @@ function postUserFetch(username) {
   })
 }
 
+// --user login functions:------------------------------------
+
 function createUserLoginHandler(e) {
   e.preventDefault()
   usernameErrors("")
@@ -46,6 +48,7 @@ function getUser(findUser) {
       if (u.attributes.username == findUser) {
         i += 1;
         updateHeadingOnLogin(findUser);
+        //getSubjects()
         matchingUserID = u.id;
       }
     })
@@ -58,6 +61,7 @@ function getUser(findUser) {
   })
 }
 
+// reloading the page will clear the variable that stores the user => like logging out/deleting session
 function logout() {
   location.reload()
 }
