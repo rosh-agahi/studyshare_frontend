@@ -25,7 +25,7 @@ function studySelections() {
     </form>
   `
   populateFlaschardField(studyForm)
-  // render subjects in selector
+  getSubjects('#subject_selector_input')
   //
 }
 

@@ -42,6 +42,7 @@ function updateHeadingOnLogin(username) {
     `
 }
 
+// delete this?
 function showControls() {
   const controls = `
     <p>Select Subject: </p>
@@ -118,13 +119,14 @@ function renderSubjectForm() {
 }
 
 function getSubjects(form) {
+  Subject.all.length = 0,
   document.querySelector(form).innerHTML = ""
   fetch(endPointSubjects)
   .then(response => response.json())
   .then(subjects => {
     subjects.data.forEach(s => {
       let newSubject = new Subject(s, s.attributes)
-      addSubjectToSelector(s, form)
+      addSubjectToSelector(newSubject, form)
     })
   })
 }
@@ -135,7 +137,7 @@ function usernameErrors(message) {
 
 function addSubjectToSelector(subject, formField) {
   const subjectSelectorMarkup = `
-  <option value="${subject.id}">${subject.attributes.name}</option>
+  <option value="${subject.id}">${subject.name}</option>
   `
   document.querySelector(formField).innerHTML += subjectSelectorMarkup
 }
