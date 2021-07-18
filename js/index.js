@@ -205,7 +205,6 @@ function displayFlashcardBack(card) {
   populateFlaschardField(flashcardBack)
 }
 
-
 function createFormHandler(e) {
   e.preventDefault()
   const termInput = document.querySelector('#term').value
@@ -249,10 +248,6 @@ function postSubjectFetch (name) {
   })
 
   populateFlaschardField(`<div>New Subject Added! You can begin adding flashcards for it now :)</div>` );
-}
-
-function logout() {
-  location.reload()
 }
 
 function showFlipCardButton() {

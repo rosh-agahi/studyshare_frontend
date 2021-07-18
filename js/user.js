@@ -57,3 +57,7 @@ function getUser(findUser) {
   if (i == 0) {usernameErrors("User Not Found. Hit Register.")}
   })
 }
+
+function logout() {
+  location.reload()
+}
