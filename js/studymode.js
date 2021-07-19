@@ -13,15 +13,15 @@ function studySelections() {
 
         <p class="box"><strong>Select Flashcard Scope:</strong></p>
           <div class="radio">
-            <input type="radio" id="global_specific" name="flashcard_scope" value="0">
-            <label for="css" checked="checked">All Available Flashcards</label><br>
+            <input type="radio" id="global_specific" name="flashcard_scope" value="0" checked="checked">
+            <label>All Available Flashcards</label><br>
 
             <input type="radio" id="user_specific" name="flashcard_scope" value="1">
-            <label for="html">My Flashcards only</label><br>
+            <label>My Flashcards only</label><br>
           </div>
 
           <br><br><br>
-      <input class="button" id="start_studying_button" name="start_studying_button" type="submit" value="Start Studying!"></input>
+      <input class="button" id="start_studying_button" name="start_studying_button" onclick="setupStudySession()" type="submit" value="Start Studying!"></input>
     </form>
   `
   populateFlaschardField(studyForm)
@@ -29,7 +29,21 @@ function studySelections() {
   //
 }
 
+function setupStudySession() {
 
+}
+
+function getFlashcards() {
+
+  fetch(endPointFlashcards)
+  .then(response => response.json())
+  .then(flashcards => {
+    flashcards.data.forEach(fc => {
+        let newFlashcard = new Flashcard(fc, fc.attributes)
+    })
+  });
+
+}
 
 
 // function getfilteredflashcards(user_id) {

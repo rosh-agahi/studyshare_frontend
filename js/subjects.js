@@ -5,6 +5,10 @@ class Subject {
     Subject.all.push(this)
     console.log(this);
   }
+
+  // render() {
+  //
+  // }
 }
 
 Subject.all = []

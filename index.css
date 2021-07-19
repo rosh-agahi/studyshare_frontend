@@ -71,7 +71,6 @@ form#subjects {
 select#subject_selector_input {
   font-family: 'Montserrat', sans-serif;
   letter-spacing: normal;
-  font-weight: bold;
   text-align-last: center;
 }
 

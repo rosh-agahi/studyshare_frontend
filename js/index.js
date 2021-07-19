@@ -142,25 +142,6 @@ function addSubjectToSelector(subject, formField) {
   document.querySelector(formField).innerHTML += subjectSelectorMarkup
 }
 
-function getFlashcards(array) {
-  num = 0;
-
-  fetch(endPointFlashcards)
-  .then(response => response.json())
-  .then(flashcards => {
-    flashcards.data.forEach(fc => {
-      if (fc.attributes.subject_id == selectedSubject) {
-        array.push(fc.attributes)
-        num++
-        document.querySelector('#count').innerHTML = `Flashcards: ${num}`
-      }
-    })
-  });
-
-  return array;
-
-}
-
 function createFormHandler(e) {
   e.preventDefault()
   const termInput = document.querySelector('#term').value
