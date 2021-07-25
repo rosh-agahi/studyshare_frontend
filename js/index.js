@@ -21,7 +21,7 @@ function requestLogin() {
   <div class="user_login_form" autocomplete="off">
     <form id="login" autocomplete="off">
       <input class="button" id="register_button" name="register_button" type="submit" value="Register"></input>
-      <input class="text_field" id="username_input" type="text" name="username_input" placeholder="username"></input>
+      <input class="username" id="username_input" type="text" name="username_input" placeholder="username"></input>
       <input class="button" id="login_button" name="login_button" type="submit" value="Login"></input>
     </form>
   </div>
