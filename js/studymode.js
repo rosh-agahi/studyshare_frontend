@@ -21,16 +21,22 @@ function studySelections() {
           </div>
 
           <br><br><br>
-      <input class="button" id="start_studying_button" name="start_studying_button" onclick="setupStudySession()" type="submit" value="Start Studying!"></input>
+      <input class="button" id="start_studying_button" name="start_studying_button" type="submit" value="Start Studying!"></input>
     </form>
   `
   populateFlaschardField(studyForm)
   getSubjects('#subject_selector_input')
+  document.querySelector("#start_studying_button").addEventListener("click", (e) => setupStudySession(e))
   //
 }
 
-function setupStudySession() {
-
+function setupStudySession(e) {
+  e.preventDefault()
+  
+  let s = document.querySelector("#subject_selector_input").value - 1
+  let scope = document.querySelector('input[name="flashcard_scope"]:checked').value
+  console.log(s)
+  console.log(scope)
 }
 
 function getFlashcards() {
