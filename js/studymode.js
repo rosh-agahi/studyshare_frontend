@@ -32,11 +32,28 @@ function studySelections() {
 
 function setupStudySession(e) {
   e.preventDefault()
-  
+
   let s = document.querySelector("#subject_selector_input").value - 1
   let scope = document.querySelector('input[name="flashcard_scope"]:checked').value
   console.log(s)
   console.log(scope)
+
+  if (scope == 0) {
+    getGlobalFlashcards(s)
+  } else {
+    getMyFlashcards(s)
+  }
+}
+
+function getGlobalFlashcards(subject) {
+  console.log(Subject.all[subject])
+}
+
+function getMyFlashcards(subject) {
+  console.log(Subject.all[subject])
+  console.log("user id: ")
+  console.log(matchingUserID)
+  console.log("but like, just my flashcards. Thnx")
 }
 
 function getFlashcards() {
