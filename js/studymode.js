@@ -1,7 +1,5 @@
 //for studyLoop
-let studyCards = [];
-let selectedSubject = 0;
-let countup = 0;
+var flashCard
 
 function studySelections() {
   const studyForm = `
@@ -27,7 +25,6 @@ function studySelections() {
   populateFlaschardField(studyForm)
   getSubjects('#subject_selector_input')
   document.querySelector("#start_studying_button").addEventListener("click", (e) => setupStudySession(e))
-  //
 }
 
 function setupStudySession(e) {
@@ -61,31 +58,24 @@ function getFlashcards(subject, scope) {
 }
 
 
-// function getRandomInt(max) {
-//   return Math.floor(Math.random() * max);
-// }
-//
-// function studyLoop() {
-//   selectedSubject = parseInt(document.querySelector('#subject_selector_input').value);
-//   getFlashcards(studyCards);
-//
-//   while (countup < 100) {
-//     c = getRandomInt(studyCards.length);
-//     displayFlashcardFront(studyCards[c]);
-//     showFlipCardButton();
-//     displayFlashcardBack(studyCards[c]);
-//     countup ++;
-//     document.querySelector('#flip_counter').innerHTML = `Flipped Cards: ${countup}`;
-//   }
-// }
-//
-// function displayFlashcardFront(card) {
-//   const flashcardFront = `
-//       <h2>${card.term}</h2>`;
-//
-//   populateFlaschardField(flashcardFront)
-// }
-//
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function selectFlashcard() {
+  let c = getRandomInt(Flashcard.all.length);
+  let flashCard = Flashcard.all[c];
+  displayFlashcardFront(flashCard);
+  showFlipCardButton();
+}
+
+function displayFlashcardFront(card) {
+  const flashcardFront = `
+      <h2>${card.term}</h2>`;
+
+  populateFlaschardField(flashcardFront)
+}
+
 // function displayFlashcardBack(card) {
 //   const flashcardBack = `
 //       <h2>${card.term}</h2>
@@ -94,11 +84,11 @@ function getFlashcards(subject, scope) {
 //   populateFlaschardField(flashcardBack)
 // }
 //
-// function showFlipCardButton() {
-//   // show button
-//   document.querySelector('#buttons').innerHTML = '<button id="flip" onclick="showNextCardButton()" class="button">Flip</button>'
-// }
-//
+function showFlipCardButton() {
+  // show button
+  document.querySelector('#buttons').innerHTML = '<button id="flip" onclick="showNextCardButton()" class="button">Flip</button>'
+}
+
 // function showNextCardButton() {
 //   e.preventDefault()
 //   // change button to "next"
