@@ -31,52 +31,36 @@ function studySelections() {
 }
 
 function setupStudySession(e) {
-  e.preventDefault()
+  e.preventDefault();
 
-  let s = document.querySelector("#subject_selector_input").value - 1
-  let scope = document.querySelector('input[name="flashcard_scope"]:checked').value
-  console.log(s)
-  console.log(scope)
+  let s = document.querySelector("#subject_selector_input").value;
+  let scp = document.querySelector('input[name="flashcard_scope"]:checked').value;
 
-  if (scope == 0) {
-    getGlobalFlashcards(s)
-  } else {
-    getMyFlashcards(s)
-  }
+  getFlashcards(s, scp)
 }
 
-function getGlobalFlashcards(subject) {
-  console.log(Subject.all[subject])
-}
-
-function getMyFlashcards(subject) {
-  console.log(Subject.all[subject])
-  console.log("user id: ")
-  console.log(matchingUserID)
-  console.log("but like, just my flashcards. Thnx")
-}
-
-function getFlashcards() {
+function getFlashcards(subject, scope) {
+  Flashcard.all.length = 0
 
   fetch(endPointFlashcards)
   .then(response => response.json())
   .then(flashcards => {
     flashcards.data.forEach(fc => {
-        let newFlashcard = new Flashcard(fc, fc.attributes)
+        if (fc.attributes.subject_id == subject) {
+          if (scope == 1) {
+            if (fc.attributes.user_id == matchingUserID) {
+              let newFlashcard = new Flashcard(fc, fc.attributes);
+            }
+          } else {
+              let newFlashcard = new Flashcard(fc, fc.attributes);
+          }
+      }
     })
   });
 
 }
 
 
-// function getfilteredflashcards(user_id) {
-// //  this is just notes for when I filter the flashcards by user id
-// //     const randomNumbers = [4, 11, 42, 14, 39];
-// //     const filteredArray = randomNumbers.filter(n => {
-// //       return n > 5;
-// //     });
-// }
-//
 // function getRandomInt(max) {
 //   return Math.floor(Math.random() * max);
 // }
