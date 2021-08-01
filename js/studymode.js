@@ -11,6 +11,7 @@ function studySelections() {
     <form id="study_selections" autocomplete="off">
         <p class="box"><strong>Select a Subject:</strong></p>
         <select id="subject_selector_input" type="text" name="subject_selector_input">
+          <option disabled="" selected="selected">Select Subject</option>
 
         </select><br>
 

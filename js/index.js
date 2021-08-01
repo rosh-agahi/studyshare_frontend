@@ -45,7 +45,8 @@ function updateHeadingOnLogin(username) {
 function renderFlashcardForm() {
   const flashcardForm = `
   <form id="create_flashcard_form" autocomplete="off">
-    <select id="subject" type="text" name="subject" placeholder="Select or Create New Subject">
+    <select id="subject" type="text" name="subject">
+      <option disabled="" selected="selected">Select Subject</option>
 
     </select>
     <br>
@@ -87,8 +88,8 @@ function renderSubjectForm() {
 }
 
 function getSubjects(form) {
-  Subject.all.length = 0,
-  document.querySelector(form).innerHTML = ""
+  Subject.all.length = 0, //this clears out the Subjects array
+
   fetch(endPointSubjects)
   .then(response => response.json())
   .then(subjects => {
@@ -131,10 +132,9 @@ function postFlashcardFetch(term, definition, subject_id, user_id) {
   .then(response => response.json())
   .then(flashcard => {
     console.log(flashcard);
-    getFlashcards()
     })
 
-  populateFlaschardField(`<div>New Flashcard added for ${term}</div>` );
+  populateFlaschardField(`<div>New Flashcard added for "${term}"</div>` );
 }
 
 function createSubjectFormHandler(e) {
