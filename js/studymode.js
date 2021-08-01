@@ -33,7 +33,9 @@ function setupStudySession(e) {
   let s = document.querySelector("#subject_selector_input").value;
   let scp = document.querySelector('input[name="flashcard_scope"]:checked').value;
 
-  getFlashcards(s, scp)
+  getFlashcards(s, scp);
+  populateFlaschardField("Flashcards have been loaded! Press the start button below.")
+  showFlipCardButtons();
 }
 
 function getFlashcards(subject, scope) {
@@ -86,8 +88,8 @@ function displayFlashcardBack(card) {
 
 function showFlipCardButtons() {
   const buttons = `
-  <button id="flip" onclick="showNextCardButton()" class="button">Flip</button>
-  <button id="next" onclick="showFlipCardButton()" class="button">Next</button>
+  <button id="flip" onclick="displayFlashcardBack(flashCard)" class="button">Flip</button>
+  <button id="next" onclick="selectFlashcard()" class="button">Next</button>
   <br>
   <br>
   `
