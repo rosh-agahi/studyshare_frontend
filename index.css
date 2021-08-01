@@ -147,22 +147,6 @@ select {
   color: var(--brown);
 }
 
-#study_mode {
-}
-
-#all_or_mine {
-}
-
-#new_flashcard {
-}
-
-.mode_button {
-
-}
-
-button {
-}
-
 .button {
   font-family: 'Montserrat', sans-serif;
   color: white;
@@ -180,14 +164,12 @@ button {
   font-weight: bold;
   font-size: 11px;
   letter-spacing: normal;
-
 }
 
 .button:active{
   box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.3)
 }
 
-.selected{}
 
 footer {
   background-color: darksalmon;
@@ -208,6 +190,7 @@ html {
   height: 100%;
   display: flex;
   flex-direction: row;
+  margin: 97px 0px;
   align-items: center;
   justify-content: center;
 }
