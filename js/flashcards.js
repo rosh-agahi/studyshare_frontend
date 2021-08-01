@@ -6,7 +6,7 @@ class Flashcard {
     this.subject = flashcardAttributes.subject.name
     this.user = flashcardAttributes.user_id
     Flashcard.all.push(this)
-    console.log(this);
+//    console.log(this);
   }
 }
 

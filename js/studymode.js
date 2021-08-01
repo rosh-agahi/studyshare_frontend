@@ -1,5 +1,5 @@
 //for studyLoop
-var flashCard
+flashCard = Flashcard.all[0]
 
 function studySelections() {
   const studyForm = `
@@ -64,9 +64,9 @@ function getRandomInt(max) {
 
 function selectFlashcard() {
   let c = getRandomInt(Flashcard.all.length);
-  let flashCard = Flashcard.all[c];
+  flashCard = Flashcard.all[c];
   displayFlashcardFront(flashCard);
-  showFlipCardButton();
+  //showFlipCardButtons();
 }
 
 function displayFlashcardFront(card) {
@@ -76,25 +76,25 @@ function displayFlashcardFront(card) {
   populateFlaschardField(flashcardFront)
 }
 
-// function displayFlashcardBack(card) {
-//   const flashcardBack = `
-//       <h2>${card.term}</h2>
-//       <h3>${card.definition}</h3>`;
-//
-//   populateFlaschardField(flashcardBack)
-// }
-//
+function displayFlashcardBack(card) {
+  const flashcardBack = `
+      <h2>${card.term}</h2>
+      <h3>${card.definition}</h3>`;
+
+  populateFlaschardField(flashcardBack)
+}
+
 function showFlipCardButton() {
   // show button
   document.querySelector('#buttons').innerHTML = '<button id="flip" onclick="showNextCardButton()" class="button">Flip</button>'
 }
 
-// function showNextCardButton() {
-//   e.preventDefault()
-//   // change button to "next"
-//   document.querySelector('#buttons').innerHTML = '<button id="next" onclick="showFlipCardButton()" class="button">Next</button>'
-// }
-//
+function showNextCardButton() {
+  e.preventDefault()
+  // change button to "next"
+  document.querySelector('#buttons').innerHTML = '<button id="next" onclick="showFlipCardButton()" class="button">Next</button>'
+}
+
 // function selectMineOrAll() {
 //   // allow user to only see their own flashcards or to use globally
 //   // created flashcards for a given subject
