@@ -1,6 +1,11 @@
 //for studyLoop
 flashCard = Flashcard.all[0]
 
+//study buttons
+const first = `<button id="next" onclick="selectFlashcard()" class="button">Show First Flashcard</button>`
+const flip = `<button id="flip" onclick="displayFlashcardBack(flashCard)" class="button">Flip</button>`
+const next = `<button id="next" onclick="selectFlashcard()" class="button">Next</button>`
+
 function studySelections() {
   const studyForm = `
     <form id="study_selections" autocomplete="off">
@@ -35,7 +40,7 @@ function setupStudySession(e) {
 
   getFlashcards(s, scp);
   populateFlaschardField("Flashcards have been loaded! Press the start button below.")
-  showFlipCardButtons();
+  showButton(first);
 }
 
 function getFlashcards(subject, scope) {
@@ -68,7 +73,6 @@ function selectFlashcard() {
   let c = getRandomInt(Flashcard.all.length);
   flashCard = Flashcard.all[c];
   displayFlashcardFront(flashCard);
-  showFlipCardButtons();
 }
 
 function displayFlashcardFront(card) {
@@ -76,6 +80,7 @@ function displayFlashcardFront(card) {
       <h2>${card.term}</h2>`;
 
   populateFlaschardField(flashcardFront)
+  showButton(flip)
 }
 
 function displayFlashcardBack(card) {
@@ -84,19 +89,9 @@ function displayFlashcardBack(card) {
       <h3>${card.definition}</h3>`;
 
   populateFlaschardField(flashcardBack)
+  showButton(next)
 }
 
-function showFlipCardButtons() {
-  const buttons = `
-  <button id="flip" onclick="displayFlashcardBack(flashCard)" class="button">Flip</button>
-  <button id="next" onclick="selectFlashcard()" class="button">Next</button>
-  <br>
-  <br>
-  `
-  document.querySelector('#buttons').innerHTML = buttons
+function showButton(b) {
+  document.querySelector('#buttons').innerHTML = b
 }
-
-// function selectMineOrAll() {
-//   // allow user to only see their own flashcards or to use globally
-//   // created flashcards for a given subject
-// }
