@@ -66,7 +66,7 @@ function selectFlashcard() {
   let c = getRandomInt(Flashcard.all.length);
   flashCard = Flashcard.all[c];
   displayFlashcardFront(flashCard);
-  //showFlipCardButtons();
+  showFlipCardButtons();
 }
 
 function displayFlashcardFront(card) {
@@ -84,15 +84,14 @@ function displayFlashcardBack(card) {
   populateFlaschardField(flashcardBack)
 }
 
-function showFlipCardButton() {
-  // show button
-  document.querySelector('#buttons').innerHTML = '<button id="flip" onclick="showNextCardButton()" class="button">Flip</button>'
-}
-
-function showNextCardButton() {
-  e.preventDefault()
-  // change button to "next"
-  document.querySelector('#buttons').innerHTML = '<button id="next" onclick="showFlipCardButton()" class="button">Next</button>'
+function showFlipCardButtons() {
+  const buttons = `
+  <button id="flip" onclick="showNextCardButton()" class="button">Flip</button>
+  <button id="next" onclick="showFlipCardButton()" class="button">Next</button>
+  <br>
+  <br>
+  `
+  document.querySelector('#buttons').innerHTML = buttons
 }
 
 // function selectMineOrAll() {
