@@ -133,6 +133,8 @@ function postFlashcardFetch(term, definition, subject_id, user_id) {
     console.log(flashcard);
     getFlashcards()
     })
+
+  populateFlaschardField(`<div>New Flashcard added for ${term}</div>` );
 }
 
 function createSubjectFormHandler(e) {
