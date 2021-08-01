@@ -42,34 +42,6 @@ function updateHeadingOnLogin(username) {
     `
 }
 
-// delete this?
-function showControls() {
-  const controls = `
-    <p>Select Subject: </p>
-      <select id="subject_selector_input" type="text" name="subject_selector_input">
-
-      </select>
-      <button id="select_subject" onclick="studyLoop()">Start Studying</button>
-
-    <br>
-
-    <p>Flashcard scope: </p>
-    <div id="flashcard_scope">
-      <button id="my_cards" class="mode_button">My Cards</button>
-      <button id="all_cards" class="mode_button">All Cards</button>
-    </div>
-
-    <div class="new_buttons">
-      <button onclick="renderFlashcardForm()" style="margin: 5px;" id="new_flashcard" class="button">Add New Card</button>
-      <button onclick="renderSubjectForm()" style="margin: 5px;" id="new_subject" class="button">Add New Subject</button>
-    </div>
-  `
-  document.querySelector('#left_column').innerHTML = controls
-
-  getSubjects('#subject_selector_input')
-
-}
-
 function renderFlashcardForm() {
   const flashcardForm = `
   <form id="create_flashcard_form" autocomplete="off">
@@ -95,14 +67,6 @@ function renderFlashcardForm() {
 function hideStudyButtons() {
   document.querySelector('#buttons').innerHTML = ""
 }
-
-// function showStudyButtons() {
-//   const buttons = `
-//   <button id="reveal" class="button">Reveal</button>
-//   <button id="next" class="button">Next</button>
-// `
-//   document.querySelector('#buttons').innerHTML = buttons
-// }
 
 function renderSubjectForm() {
   const subjectForm = `
