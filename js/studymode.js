@@ -28,6 +28,7 @@ function studySelections() {
     </form>
   `
   populateFlaschardField(studyForm)
+  hideStudyButtons()
   getSubjects('#subject_selector_input')
   document.querySelector("#start_studying_button").addEventListener("click", (e) => setupStudySession(e))
 }

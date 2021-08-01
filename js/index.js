@@ -62,6 +62,8 @@ function renderFlashcardForm() {
 
   let createFlashcardForm = document.querySelector("#create_flashcard_form")
   createFlashcardForm.addEventListener("submit", (e) => createFormHandler(e))
+
+  hideStudyButtons()
 }
 
 function hideStudyButtons() {
@@ -80,6 +82,8 @@ function renderSubjectForm() {
 
   let createSubjectForm = document.querySelector("#create_subject_form")
   createSubjectForm.addEventListener("submit", (e) => createSubjectFormHandler(e))
+
+  hideStudyButtons()
 }
 
 function getSubjects(form) {
