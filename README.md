@@ -2,6 +2,9 @@
 
 StudyShare is an app built to help students organize and study and share their flashcards for class! The user registers for an account using a unique username. They need only their username to log in. A user can create Subjects and add Flashcards for those subjects. Once flashcards have been populated, they can select a Subject and cycle through either all globally available flashcards or just their own flashcards to study.
 
+## Backend Repo:
+https://github.com/rosh-agahi/studyshare_backend
+
 ## Installing
 
 To install the app in your local environment:
@@ -21,7 +24,6 @@ To install the app in your local environment:
 * Rack-CORS - handles Cross-Origin-Resource-Sharing to allow you to write to the db from the app frontend
 * HTML/CSS - application layout and formatting.
 * JavaScript - modifies the SPA view and sends requests to the backend to create/read flashcards, subjects and users.
-
 
 ## Contributing
 
