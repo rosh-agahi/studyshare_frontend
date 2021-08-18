@@ -54,7 +54,7 @@ function getUser(findUser) {
     })
   if (i > 0) {
     userLoggedIn = true;
-    populateFlaschardField('<p class="box"> Use the navigation to the left to select a subject and start studying, add a new subject, or add flashcards for existing subjects.</p>');
+    populateFlaschardField('<p class="box"> Use the navigation above to select a subject and start studying, add a new subject, or add flashcards for existing subjects.</p>');
     //showControls()
     }
   if (i == 0) {usernameErrors("User Not Found. Hit Register.")}
